@@ -1,11 +1,8 @@
 # aabutchy.github.io
 
-## Inspiration:
+A quick and dirty personal website hosted by Github pages.
 
-### Customizing Bootstrap
+## Resources and Inspiration:
 
-https://www.youtube.com/watch?v=nCX3QVl_PiI
-
-### Personal Website
-
-youtube.com/watch?v=iJKCj8uAHz8
+- [Customizing Bootstrap](https://www.youtube.com/watch?v=nCX3QVl_PiI)
+- [Personal Website via Github Pages](youtube.com/watch?v=iJKCj8uAHz8)
