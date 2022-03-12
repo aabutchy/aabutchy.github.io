@@ -11,7 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <!-- END CSS Scripts -->
-    <title>Projects</title>
+    <title>Confusion Matrix</title>
 </head>
 
 <body>
@@ -41,98 +41,189 @@
 
 
     <!-- Content -->
-    <div class="container mx-5 mb-5 pb-5">
-        $$\sum_{i=1}^nc=(cn/(TP+FP))$$
-        $$7\frac{4}{3}$$
-        $$7\dfrac{4}{3}$$
+    <div class="container-fluid">
+        <div class="container mx-5 mb-5 pb-5">
+            <h2 class="my-3">The Confusion Matrix</h2>
+            <h3>Introduction</h3>
+            <p>Placeholder</p>
 
-        Wikipedia provides a nice introduction to this topic. Much of this content is taken from here. I'm just trying
-        to visualize it in a clearer, more focused approach (link to citation =
-        https://en.wikipedia.org/wiki/Confusion_matrix).
+            <h3>TLDR</h3>
+            <p>The confusion matrix is a handy data visualization tool that allows artificial intelligence (AI) experts
+                and
+                healthcare clinicians understand the accuracy of an AI or diagnostic test. It quickly summarizes the
+                results
+                of an experiment, illustrating how accurately a device performs.</p>
 
-        There are many different ways to look at this concept. I am going to approach it from the standpoint of a
-        diagnostic test. In this example, there is a medical test that is meant to determine if pateints are sick or not
-        sick (healthy)?
-
-        Now, there are two piece of of terminology for this situation. The first is "True" vs "False"; and the second is
-        "Positive" vs "Negative".
-
-        <p>In a Confusion Matrix, "True" and "False" are meant to refer to correctly getting the write result. For
-            instance, the test telling you that you are sick when you are in fact sick. This is pretty intuitive. A
-            "true" test is one that returns the correct information while a false test is one that returns the incorrect
-            result. </p>
-
-        <p>Next, "Positive" vs "Negative". This refers to the result of the test itself. For instance if the test
-            returns "sick" that is considered a "positive" result because it found the presence of disease. In contrast,
-            a "Negative" test is one that returns a "healthy" </p>
-        <p>True Positives ($$TP$$) = A correct diagnosis that you are sick.</p>
-        <p>True Negative ($$TN$$) = A correct diagnosis that you are NOT sick.</p>
-        <p>False Positive ($$FP$$) = An incorrect diagnosis that you are sick.</p>
-        <p>False Negative ($$FN$$) = An incorrect diagnosis that you are NOT sick.</p>
-
-        $$TP$$
-        $$TN$$
-        $$FP$$
-        $$FN$$
-
-        Sensitivity (SE)
-        $$Se = \frac{TP}{TP+FN}$$
-        Specificity (Sp)
-        $$Sp = \frac{TN}{TN+FP}$$
-        Positive Predictive Value (PPV)
-        $$PPV = \frac{TP}{TP+FP}$$
-        Negative Predictive Value (NPV)
-        $$NPV = \frac{TN}{TN+FN}$$
-        Accuracy (Acc)
-        $$Acc = \frac{TP+TN}{TP+TN+FP+FN}$$
+            <h3>Quick Terminology</h3>
+            <p>True Positives \(TP = \) = A correct diagnosis that you are sick.</p>
+            <p>True Negative \(TN = \) = A correct diagnosis that you are NOT sick.</p>
+            <p>False Positive \(FP = \) = An incorrect diagnosis that you are sick.</p>
+            <p>False Negative \(FN = \) = An incorrect diagnosis that you are NOT sick.</p>
 
 
+            <h3>Still Confused?</h3>
+            In this description, I will be using "sick" to denote people with some "disease" that we are trying to
+            identify.
+            In contrast, I will be using "healthy" to denote people without the "disease" that we are trying to
+            identify.
+            A "Positive" test is one that says the patient in "sick". When the patient is actually sick, this is known
+            as a
+            True Positive. If the patient was healthy and the test incorrectly indicated that they were "sick", this is
+            refered to as a "False Positive". In contrast, a "Negative" test
+
+            Wikipedia provides a nice introduction to this topic. Much of this content is taken from here. I'm just
+            trying
+            to visualize it in a clearer, more focused approach (link to citation =
+            https://en.wikipedia.org/wiki/Confusion_matrix).
+
+            There are many different ways to look at this concept. I am going to approach it from the standpoint of a
+            diagnostic test. In this example, there is a medical test that is meant to determine if pateints are sick or
+            not
+            sick (healthy)?
+
+            Now, there are two piece of of terminology for this situation. The first is "True" vs "False"; and the
+            second is
+            "Positive" vs "Negative".
+
+            <p>In a Confusion Matrix, "True" and "False" are meant to refer to correctly getting the write result. For
+                instance, the test telling you that you are sick when you are in fact sick. This is pretty intuitive. A
+                "true" test is one that returns the correct information while a false test is one that returns the
+                incorrect
+                result. </p>
+
+            <p>Next, "Positive" vs "Negative". This refers to the result of the test itself. For instance if the test
+                returns "sick" that is considered a "positive" result because it found the presence of disease. In
+                contrast,
+                a "Negative" test is one that returns a "healthy" </p>
+
+
+
+            <p>Unfortunately, there are many different ways you can be wrong in such a simple problem. What if you are
+                really good at identifying healthy patients but not really great at identifying when someone is sick?
+                Sound
+                confusing, right? If someone isn't healthy, they're automatically sick, right? Yes this is where the
+                math
+                doen't really translate well into english (or I am just bad at describing it). Perhaps the clearest way
+                to
+                show you this problem is with another example. Let's say there are 10 patients, 5 healthy and 5 sick.
+                Imagine that this medical test only looks at whether the patient has barfed. Not at great test, but
+                stick
+                with me. In this case, the test asks each patient if they've barfed. Even though there are 5 sick
+                patients,
+                only 3 have barfed, leaving you with 7 patients (5 healthy and 2 sick) that haven't barfed. Guess what,
+                your
+                test is great at identifying healthy people (5 out of 5 healthy people found), but not great at telling
+                when
+                a patient is sick (3 out of 5 sick people found). In the paragraphs to follow, this test would be
+                considered
+                a very "Specific" test (or a test with high specificity) because it is able to accurately identify
+                healthy
+                patients.
+            </p>
+
+            <p>In a perfect world, we wouldn't have to care about such things! Every test would be 100% and the only
+                things
+                clinicians would need to do was know what tests to order and when. But unfortunately, tests are not
+                always
+                accurate and clinicians must always consider the accuracy of the tests they prescribe, and the risks
+                that
+                some tests carry for the patients. but unfortunately we
+                have very few perfect tests that are able to get it right 100% of the time. Science is still
+                progressing,
+                but in the mean time, we have to make trade offs depending upon the resources we have availabilt to us,
+                and
+                what we are trying to detect. In truth, sensitivity is not more important thatn specificity or vice
+                versa,
+                it really matters what situation you are in and what you are trying to accomplish. Think about pregnancy
+                tests. Is it more important to correclty identify a pregnant woman, or be able to definitely tell a
+                woman
+                she is not? we have to make trade offs in different situations. </p>
+
+            <p>\(TP = \) True Positives</p>
+            <p>\(TN = \) True Negatives</p>
+            <p>\(FP = \) False Positives</p>
+            <p>\(FN = \) False Negatives</p>
+
+            <p>\(Se = \) Sensitivity</p>
+            <p>\(Sp = \) Specificity</p>
+            <p>\(PPV = \) Positive Predictive Value</p>
+            <p>\(NPV = \) Negative Predictive Value</p>
 
 
 
 
-    </div>
+
+            <p>
+                $$TP$$
+
+            </p>
+            $$TN$$
+            $$FP$$
+            $$FN$$
+            When \(TP\), blah bd bla
+
+            When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+            $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 
-    <!-- Footer -->
-    <nav class="navbar fixed-bottom navbar-light bg-light border-top">
-        <div class="container-fluid mx-5 my-2">
-            <div class="col-md-4">
-                <span class="text-muted">© 2022 Adam A. Butchy</span>
+            Sensitivity (SE)
+            $$Se = \frac{TP}{TP+FN}$$
+            Specificity (Sp)
+            $$Sp = \frac{TN}{TN+FP}$$
+            Positive Predictive Value (PPV)
+            $$PPV = \frac{TP}{TP+FP}$$
+            Negative Predictive Value (NPV)
+            $$NPV = \frac{TN}{TN+FN}$$
+            Accuracy (Acc)
+            $$Acc = \frac{TP+TN}{TP+TN+FP+FN}$$
 
-            </div>
-            <div class="d-flex col-md-4 justify-content-end">
-                <a href="https://github.com/aabutchy">
-                    <img src="img/github1.svg" alt="" width="30" height="24" class="mx-1">
-                </a>
-                <a href="https://www.linkedin.com/in/adambutchy/">
-                    <img src="img/linked3.svg" alt="" width="30" height="24" class="mx-1">
-                </a>
-                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=iLmtbRYAAAAJ">
-                    <img src="img/scholar7.png" alt="" width="24" height="24" class="mx-1">
-                </a>
-                <a href="https://twitter.com/Abutchy">
-                    <img src="img/twitter1.svg" alt="" width="30" height="24" class="mx-1">
-                </a>
-                <a href="https://www.instagram.com/abutchy/">
-                    <img src="img/insta2.svg" alt="" width="30" height="24" class="mx-1">
-                </a>
-            </div>
+            <p>In this context, a sensitive diagnostic test is one that is able to correctly diagnose sick people.</p>
+            <p>In this context, a specific diagnostic test is one that is able to correctly identify healthy people.</p>
+
+
 
         </div>
-    </nav>
 
 
-    <!-- Start JS libraries -->
-    <!-- Bootstrap v5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <!-- Mathjax js -->
-    <script src="js/load-mathjax.js" async></script>
+        <!-- Footer -->
+        <nav class="navbar fixed-bottom navbar-light bg-light border-top">
+            <div class="container-fluid mx-5 my-2">
+                <div class="col-md-4">
+                    <span class="text-muted">© 2022 Adam A. Butchy</span>
+
+                </div>
+                <div class="d-flex col-md-4 justify-content-end">
+                    <a href="https://github.com/aabutchy">
+                        <img src="img/github1.svg" alt="" width="30" height="24" class="mx-1">
+                    </a>
+                    <a href="https://www.linkedin.com/in/adambutchy/">
+                        <img src="img/linked3.svg" alt="" width="30" height="24" class="mx-1">
+                    </a>
+                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=iLmtbRYAAAAJ">
+                        <img src="img/scholar7.png" alt="" width="24" height="24" class="mx-1">
+                    </a>
+                    <a href="https://twitter.com/Abutchy">
+                        <img src="img/twitter1.svg" alt="" width="30" height="24" class="mx-1">
+                    </a>
+                    <a href="https://www.instagram.com/abutchy/">
+                        <img src="img/insta2.svg" alt="" width="30" height="24" class="mx-1">
+                    </a>
+                </div>
+
+            </div>
+        </nav>
 
 
-    <!-- End JS libraries -->
+        <!-- Start JS libraries -->
+        <!-- Bootstrap v5 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+        <!-- Mathjax js -->
+        <script src="js/load-mathjax.js" async></script>
+
+
+        <!-- End JS libraries -->
 </body>
 
 </html>
