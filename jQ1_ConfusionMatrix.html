@@ -41,71 +41,72 @@
 
 
     <!-- Content -->
-    <div class="container-fluid">
-        <div class="container mt-3 mx-5 mb-5 pb-5">
-            <h1 class="my-3">The Confusion Matrix</h1>
+    <div class="container mt-3 ml-5 mb-5">
+        <h1 class="my-3">The Confusion Matrix</h1>
 
-            <div class="row">
-                <div class="col-md-5">
-                    <h3>Introduction</h3>
-                    <p>The confusion matrix is a handy data visualization tool that allows doctors to quickly understand
-                        the accuracy of a medical test. It summarizes how often the test correctly identifies healthy
-                        and
-                        sick patients in a group. As such, it is invaluable for conveying how accurate a test is, and
-                        how confident the doctor can be in the test's result. </p>
-                    <p>
-                    <p>
-                        Imagine you are an engineer, trying to develop a test that can correctly identify patients that
-                        have a disease.
-                    </p>
-                    In the image to the right, we see an example of a simple confusion matrix that shows the four
-                    different outcomes in a patient population. In the rows, we see different types of patients
-                    (Healthy and Sick), and in the columns, we see the test results (a Negative Test indicates that
-                    the test believes the patient is Healthy, while a Positive Test indicates that the test believes
-                    the patient
-                    is Sick). Pretty simple right?
-                    </p>
-
-                </div>
-                <div class="col-md-7 d-flex align-text-top">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-md-12 d-flex justify-content-center align-items-start" height="30%">
-                            <img src="img/ConfMatrix.png" alt="" width="30%" style="object-fit: contain;">
-
-                        </div>
-                        <div class="col-md-12">
-                            <h3>Terminology and Definitions</h3>
-
-                            <p>
-                                <strong>Healthy </strong> = does not have disease. <br>
-                                <strong>Sick </strong>= does have the disease.<br>
-                                <strong>A Positive Test </strong>= the test says the patient has the disease.<br>
-                                <strong>A Negative Test </strong>= the test says the patient does not have the
-                                disease.<br>
-
-                                <strong>True Positives \((TP)\) </strong>= a <strong>correct</strong> diagnosis that the
-                                patient
-                                is <strong>
-                                    sick</strong>. <br>
-                                <strong>True Negative \((TN)\) </strong>= a <strong>correct</strong> diagnosis that the
-                                patient
-                                is <strong>
-                                    NOT sick</strong>.<br>
-                                <strong>False Positive \((FP)\) </strong>= an <strong>incorrect</strong> diagnosis that
-                                the
-                                patient is <strong>
-                                    sick</strong>.<br>
-                                <strong>False Negative \((FN)\)</strong> = an <strong>incorrect</strong> diagnosis that
-                                the
-                                patient is <strong>
-                                    NOT sick</strong>.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-5">
+                <h3>Introduction</h3>
+                <p>The confusion matrix is a handy data visualization tool that allows doctors to quickly understand
+                    the accuracy of a medical test. It summarizes how often the test correctly identifies healthy
+                    and
+                    sick patients in a group. As such, it is invaluable for conveying how accurate a test is, and
+                    how confident the doctor can be in the test's result. </p>
+                <p>
+                <p>
+                    Imagine you are an engineer, trying to develop a test that can correctly identify patients that
+                    have a disease.
+                </p>
+                In the image to the right, we see an example of a simple confusion matrix that shows the four
+                different outcomes in a patient population. In the rows, we see different types of patients
+                (Healthy and Sick), and in the columns, we see the test results (a Negative Test indicates that
+                the test believes the patient is Healthy, while a Positive Test indicates that the test believes
+                the patient
+                is Sick). Pretty simple right?
+                </p>
 
             </div>
+            <div class="col-md-7 d-flex align-text-top">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 d-flex justify-content-center align-items-start" height="30%">
+                        <img src="img/ConfMatrix.png" alt="" width="70%" style="object-fit: contain;">
+
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Terminology and Definitions</h3>
+
+                        <p>
+                            <strong>Healthy </strong> = does not have disease. <br>
+                            <strong>Sick </strong>= does have the disease.<br>
+                            <strong>A Positive Test </strong>= the test says the patient has the disease.<br>
+                            <strong>A Negative Test </strong>= the test says the patient does not have the
+                            disease.<br>
+
+                            <strong>True Positives \((TP)\) </strong>= a <strong>correct</strong> diagnosis that the
+                            patient
+                            is <strong>
+                                sick</strong>. <br>
+                            <strong>True Negative \((TN)\) </strong>= a <strong>correct</strong> diagnosis that the
+                            patient
+                            is <strong>
+                                NOT sick</strong>.<br>
+                            <strong>False Positive \((FP)\) </strong>= an <strong>incorrect</strong> diagnosis that
+                            the
+                            patient is <strong>
+                                sick</strong>.<br>
+                            <strong>False Negative \((FN)\)</strong> = an <strong>incorrect</strong> diagnosis that
+                            the
+                            patient is <strong>
+                                NOT sick</strong>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
             <h3>Still Confused?</h3>
             In this description, I will be using "sick" to denote people with some "disease" that we are trying to
             identify.
@@ -225,50 +226,51 @@
             <p>In this context, a sensitive diagnostic test is one that is able to correctly diagnose sick people.</p>
             <p>In this context, a specific diagnostic test is one that is able to correctly identify healthy people.</p>
 
-
-
         </div>
 
+    </div>
 
-        <!-- Footer -->
-        <nav class="navbar fixed-bottom navbar-light bg-light border-top">
-            <div class="container-fluid mx-5 my-2">
-                <div class="col-md-4">
-                    <span class="text-muted">© 2022 Adam A. Butchy</span>
 
-                </div>
-                <div class="d-flex col-md-4 justify-content-end">
-                    <a href="https://github.com/aabutchy">
-                        <img src="img/github1.svg" alt="" width="30" height="24" class="mx-1">
-                    </a>
-                    <a href="https://www.linkedin.com/in/adambutchy/">
-                        <img src="img/linked3.svg" alt="" width="30" height="24" class="mx-1">
-                    </a>
-                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=iLmtbRYAAAAJ">
-                        <img src="img/scholar7.png" alt="" width="24" height="24" class="mx-1">
-                    </a>
-                    <a href="https://twitter.com/Abutchy">
-                        <img src="img/twitter1.svg" alt="" width="30" height="24" class="mx-1">
-                    </a>
-                    <a href="https://www.instagram.com/abutchy/">
-                        <img src="img/insta2.svg" alt="" width="30" height="24" class="mx-1">
-                    </a>
-                </div>
+
+    <!-- Footer -->
+    <nav class="navbar fixed-bottom navbar-light bg-light border-top">
+        <div class="container-fluid mx-5 my-2">
+            <div class="col-md-4">
+                <span class="text-muted">© 2022 Adam A. Butchy</span>
 
             </div>
-        </nav>
+            <div class="d-flex col-md-4 justify-content-end">
+                <a href="https://github.com/aabutchy">
+                    <img src="img/github1.svg" alt="" width="30" height="24" class="mx-1">
+                </a>
+                <a href="https://www.linkedin.com/in/adambutchy/">
+                    <img src="img/linked3.svg" alt="" width="30" height="24" class="mx-1">
+                </a>
+                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=iLmtbRYAAAAJ">
+                    <img src="img/scholar7.png" alt="" width="24" height="24" class="mx-1">
+                </a>
+                <a href="https://twitter.com/Abutchy">
+                    <img src="img/twitter1.svg" alt="" width="30" height="24" class="mx-1">
+                </a>
+                <a href="https://www.instagram.com/abutchy/">
+                    <img src="img/insta2.svg" alt="" width="30" height="24" class="mx-1">
+                </a>
+            </div>
+
+        </div>
+    </nav>
 
 
-        <!-- Start JS libraries -->
-        <!-- Bootstrap v5 -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-            </script>
-        <!-- Mathjax js -->
-        <script src="js/load-mathjax.js" async></script>
+    <!-- Start JS libraries -->
+    <!-- Bootstrap v5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+    <!-- Mathjax js -->
+    <script src="js/load-mathjax.js" async></script>
 
 
-        <!-- End JS libraries -->
+    <!-- End JS libraries -->
 </body>
 
 </html>
