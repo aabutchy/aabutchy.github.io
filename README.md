@@ -31,6 +31,9 @@ A quick and dirty personal website hosted by Github pages.
 - [test](test)
 - [test](test)
 - [test](test)
+- My half marathons?
+- Links to competitions/Rice
+- Links to Baylor
 
 ### Other Projects
 
