@@ -28,12 +28,28 @@ A quick and dirty personal website hosted by Github pages.
 - [other works from my google scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=iLmtbRYAAAAJ)
 - [other works](https://en.x-mol.com/paper/article/1428833806609793024)
 - [test](test)
+- [Pitchbook: Heartio](https://pitchbook.com/profiles/company/265965-31#overview)
+- [Researchgate: Profile](https://www.researchgate.net/profile/Adam-Butchy)
+- [Crunchbase: Profile](https://www.crunchbase.com/person/adam-butchy)
+- [Rustbuilt: Profile](https://pgh.rustbuilt.org/u/adam-butchy)
+- [F6S: Profile](https://www.f6s.com/adambutchy)
+- [AboutMe: Profile](https://about.me/adambutchy)
+- [MeLoDy Lab: Profile](https://www.nmzlab.pitt.edu/people/adam-butchy)
+- [FourthRiverSolutions (4RS) Member](http://www.fourthriversolutions.org/members)
+- [The Villanova Times writer](https://vutimes.wordpress.com/staff-3/)
+- [The Villanova Times article "UNDERGRADUATE THEATER PREVIEW (WITH FOOD FOR THOUGHT ANSWER!"](https://vutimes.wordpress.com/2013/09/24/undergraduate-theater-preview-with-food-for-thought-answer/)
 - [test](test)
 - [test](test)
 - [test](test)
+- [test](test)
+- [test](test)
+- [test](test)
+
 - My half marathons?
+- Importance of Mental Health
 - Links to competitions/Rice
 - Links to Baylor
+- Work for BioE Day, BMES, EGSO, 4rth River Solutions, VSMT, VST, ChemE Car, etc
 
 ### Other Projects
 
