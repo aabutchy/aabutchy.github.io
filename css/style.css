@@ -9,3 +9,7 @@
 li:not(:last-child) {
     margin-bottom: 3px;
 }
+.legend {
+    width: 500px;
+    height: auto;
+}

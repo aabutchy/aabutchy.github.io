@@ -9,7 +9,15 @@
     <!-- Bootstrap v5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Qtips file -->
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+
+    <!-- Personal CSS files -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jQ3_MacCytoscape.css">
+
     <!-- END CSS Scripts -->
     <!-- START Favicons Stuff -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
@@ -21,7 +29,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- END Favicons Stuff -->
     <!-- Page Descripting -->
-    <title>Projects</title>
+    <title>Mac CytoscapeJS</title>
 </head>
 
 <body>
@@ -51,86 +59,17 @@
 
 
     <!-- Content -->
-    <div class="container mt-1 mb-5 pb-4">
-        <div class="row d-flex align-items-center py-lg-4">
-            <h1 class="mt-0 mb-2">Projects</h1>
-            <p class="pt-3">My Port-fo-lio? Sorry, I don't speak Italian. </p>
-            <p>I'd apologize for the bad joke, but what can I say, this is all a <b>work in progress</b>.</p>
-            <p>This is just stuff I've worked on, either for fun or not. <i>Only I know which is which.</i> </p>
+    <div class="container">
+        <h2 style="margin-top: 1rem; margin-bottom: 1rem;">GM-CSF Signal Propogation Visualization</h2>
+        <div class="row">
+            Legend: <img class="legend" src="img/legend.png" width="50" height="50" alt="Legend">
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Project 1 -->
-            <!-- <div class="col"> -->
-            <!-- <a href="jQ1_ConfusionMatrix.html" class="a-link"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/ConfMatrix.png" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">The Confusion Matrix</h5> -->
-            <!-- <p class="card-text">A handy data visualization technique for communicating classification, -->
-            <!-- prediction, or diagnostic accuracy.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Last updated March 10, 2022</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </a> -->
-            <!-- </div> -->
-
-            <!-- Project 2 -->
-            <!-- <div class="col"> -->
-            <!-- <a href="jQ1_MacrophageVis.html" class="a-link"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/404.jpg" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">Macrophage Modeling</h5> -->
-            <!-- <p class="card-text">Visulazing macrophage activation and polarization.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Ongoing - In Progress</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </a> -->
-            <!-- </div> -->
-
-            <!-- Project 3 -->
-            <div class="col">
-                <a href="index.html" class="a-link">
-                    <div class="card h-100">
-                        <img src="img/404.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Placeholder</h5>
-                            <p class="card-text">Default structure of portfolio projects</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated NEVER</small>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
-
-            <!-- Project Spare -->
-            <!-- <div class="col"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/404.jpg" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">Card title</h5> -->
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in -->
-            <!-- to additional -->
-            <!-- content. This content is a little bit longer.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Published Jan 2020</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
-
-
-
+        <div class="row">
+            <div id="cy"></div>
         </div>
-
+        <!-- <button id="saveLocation">Save Node Locations</button> -->
     </div>
+
 
 
     <!-- Footer -->
@@ -165,8 +104,18 @@
     <!-- Start JS libraries -->
     <!-- Bootstrap v5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+    <!-- Cytoscape JS with Popper and tippy for graph visualizations and tool tips -->
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.14.7/dist/umd/popper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-popper@1.0.4/cytoscape-popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4.0.1/umd/index.all.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@4.0.1/index.css" />
+
+    <!-- Custom JS -->
+    <script src="js/jQ3_MacCytoscape.js"></script>
 
     <!-- End JS libraries -->
 </body>

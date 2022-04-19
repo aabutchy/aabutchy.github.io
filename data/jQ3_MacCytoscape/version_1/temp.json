@@ -1,0 +1,1 @@
+[{"data": {"id": "a"}, "position": {"x": 10, "y": 10}}, {"data": {"id": "b"}, "position": {"x": 100, "y": 100}}, {"data": {"id": "ab", "source": "a", "target": "b"}}]

@@ -21,7 +21,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- END Favicons Stuff -->
     <!-- Page Descripting -->
-    <title>Projects</title>
+    <title>Macrophage Visualization</title>
 </head>
 
 <body>
@@ -51,85 +51,10 @@
 
 
     <!-- Content -->
-    <div class="container mt-1 mb-5 pb-4">
-        <div class="row d-flex align-items-center py-lg-4">
-            <h1 class="mt-0 mb-2">Projects</h1>
-            <p class="pt-3">My Port-fo-lio? Sorry, I don't speak Italian. </p>
-            <p>I'd apologize for the bad joke, but what can I say, this is all a <b>work in progress</b>.</p>
-            <p>This is just stuff I've worked on, either for fun or not. <i>Only I know which is which.</i> </p>
+    <div class="container">
+        <div class="row">
+            <div id="chart-area"></div>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- Project 1 -->
-            <!-- <div class="col"> -->
-            <!-- <a href="jQ1_ConfusionMatrix.html" class="a-link"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/ConfMatrix.png" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">The Confusion Matrix</h5> -->
-            <!-- <p class="card-text">A handy data visualization technique for communicating classification, -->
-            <!-- prediction, or diagnostic accuracy.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Last updated March 10, 2022</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </a> -->
-            <!-- </div> -->
-
-            <!-- Project 2 -->
-            <!-- <div class="col"> -->
-            <!-- <a href="jQ1_MacrophageVis.html" class="a-link"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/404.jpg" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">Macrophage Modeling</h5> -->
-            <!-- <p class="card-text">Visulazing macrophage activation and polarization.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Ongoing - In Progress</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </a> -->
-            <!-- </div> -->
-
-            <!-- Project 3 -->
-            <div class="col">
-                <a href="index.html" class="a-link">
-                    <div class="card h-100">
-                        <img src="img/404.jpg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Placeholder</h5>
-                            <p class="card-text">Default structure of portfolio projects</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated NEVER</small>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
-
-            <!-- Project Spare -->
-            <!-- <div class="col"> -->
-            <!-- <div class="card h-100"> -->
-            <!-- <img src="img/404.jpg" class="card-img-top" alt=""> -->
-            <!-- <div class="card-body"> -->
-            <!-- <h5 class="card-title">Card title</h5> -->
-            <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in -->
-            <!-- to additional -->
-            <!-- content. This content is a little bit longer.</p> -->
-            <!-- </div> -->
-            <!-- <div class="card-footer"> -->
-            <!-- <small class="text-muted">Published Jan 2020</small> -->
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- </div> -->
-
-
-
-        </div>
-
     </div>
 
 
@@ -165,8 +90,21 @@
     <!-- Start JS libraries -->
     <!-- Bootstrap v5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+    <!-- D3 libraries -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- jQuery libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
+    <!-- Popper libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom JS -->
+    <script src="js/jQ2_MacrophageVis.js"></script>
 
     <!-- End JS libraries -->
 </body>
