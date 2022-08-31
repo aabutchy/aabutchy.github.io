@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- START CSS Scripts -->
+    <!-- Bootstrap v5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Qtips file -->
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+
+    <!-- Personal CSS files -->
+    <!-- <link rel="stylesheet" href="z_style.css">
+    <link rel="stylesheet" href="z_stylesheet.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jQ3_MacCytoscape.css">
+
+
+    <!-- END CSS Scripts -->
+    <!-- START Favicons Stuff -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="img/favicons/site.webmanifest">
+    <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- END Favicons Stuff -->
+    <!-- Page Descripting -->
+    <!-- TODO NEEDS TO BE UPDATED FOR NEW PAGES -->
+    <title>GMCSF_v3</title>
+</head>
+
+<body>
+
+
+    <!-- Content -->
+    <div class="container">
+        <!-- TODO NEEDS TO BE UPDATED FOR NEW PAGES -->
+        <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Simplified GM-CSF Model (version 3)</h2>
+        <!-- <button id="saveLocation">Save Node Locations</button> -->
+        <!-- <div class="row"> -->
+        <!-- Legend: <img class="legend" src="img/legend.png" width="500px" alt="Legend"> -->
+        <!-- </div> -->
+        <div class="row" style="margin-bottom: 10px">
+            <fieldset>
+                <legend>Select a Scenario:</legend>
+
+                <input type="radio" id="radio_0" name="drone" value="radio_0" checked>
+                <label for="radio_0">No Signal</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_1" name="drone" value="radio_1">
+                <label for="radio_1">Just Receptors</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_2" name="drone" value="radio_2">
+                <label for="radio_2">M1</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_3" name="drone" value="radio_3">
+                <label for="radio_3">M2</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_4" name="drone" value="radio_4">
+                <label for="radio_4">GM-CSF</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_5" name="drone" value="radio_5">
+                <label for="radio_5">M1 + GM-CSF</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_6" name="drone" value="radio_6">
+                <label for="radio_6">M2 + GM-CSF</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_7" name="drone" value="radio_7">
+                <label for="radio_7">BMM</label>
+                <span style="background-color: white; color: white;">____</span>
+
+                <input type="radio" id="radio_8" name="drone" value="radio_8">
+                <label for="radio_8">GMM</label>
+                <span style="background-color: white; color: white;">____</span>
+
+
+                <button id="reloadFigure">Load Selected Scenario</button>
+
+            </fieldset>
+
+        </div>
+        <div class="row">
+            <div id="cy"></div>
+        </div>
+
+    </div>
+
+    <!-- http-server -c-1 -->
+    <!-- http://127.0.0.1:8080/Adam/22.04.05_Mac/z_html.html -->
+
+    <!-- Start JS libraries -->
+    <!-- Bootstrap v5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+    <!-- Cytoscape JS with Popper and tippy for graph visualizations and tool tips -->
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.14.7/dist/umd/popper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-popper@1.0.4/cytoscape-popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4.0.1/umd/index.all.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@4.0.1/index.css" />
+
+    <!-- Custom JS -->
+    <!-- TODO NEEDS TO BE UPDATED FOR NEW PAGES -->
+    <!-- <script src="z_javascript.js"></script> -->
+    <script src="js/jQ7_MacGMCSF.js"></script>
+
+
+    <!-- End JS libraries -->
+</body>
+
+</html>
