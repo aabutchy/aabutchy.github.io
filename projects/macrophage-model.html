@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macrophage GM-CSF Model — Adam A. Butchy</title>
+  <meta name="description" content="An interactive network model of macrophage activation in response to GM-CSF, M1, and M2 stimuli, from Adam Butchy's Ph.D. dissertation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tippy.js@4.3.5/index.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="../img/favicons/safari-pinned-tab.svg" color="#b42b3a">
+  <meta name="theme-color" content="#fbfaf8">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Adam A. Butchy</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../news.html">News</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="small"><a href="../projects.html">← All projects</a></p>
+      <h1>Macrophage GM-CSF signaling model</h1>
+      <p class="section-lead">A simplified network of how a macrophage responds to GM-CSF and to classic M1 and M2 polarizing signals, from my Ph.D. work in the MeLoDy Lab at the University of Pittsburgh.</p>
+
+      <div class="prose">
+        <p>Macrophages are immune cells that change their behavior depending on the signals around them. Inflammatory "M1" signals push them toward attacking pathogens; "M2" signals push them toward repair and resolution. GM-CSF (granulocyte-macrophage colony-stimulating factor) is a growth factor that shapes both. This model captures the genes, transcripts, and proteins that carry those signals from the cell membrane into the nucleus and back out again.</p>
+        <p><strong>How to use it:</strong> choose a stimulus scenario, then hover over (or tap) any node to see its positive and negative regulators and its simulated activity trace under that scenario. Drag to pan, scroll or pinch to zoom, and drag nodes to rearrange them.</p>
+      </div>
+
+      <img class="legend-img" src="../img/legend.png" alt="Legend: circles are proteins, hexagons are mRNA, squares are genes, green arrows are positive regulation, red bars are negative regulation" width="1338" height="104">
+
+      <fieldset class="controls" aria-label="Stimulus scenario">
+        <legend class="visually-hidden">Select a scenario</legend>
+        <input type="radio" id="s0" name="scenario" value="Scenario_0" checked><label for="s0">No signal</label>
+        <input type="radio" id="s1" name="scenario" value="Scenario_1"><label for="s1">Receptors only</label>
+        <input type="radio" id="s2" name="scenario" value="Scenario_2"><label for="s2">M1</label>
+        <input type="radio" id="s3" name="scenario" value="Scenario_3"><label for="s3">M2</label>
+        <input type="radio" id="s4" name="scenario" value="Scenario_4"><label for="s4">GM-CSF</label>
+        <input type="radio" id="s5" name="scenario" value="Scenario_5"><label for="s5">M1 + GM-CSF</label>
+        <input type="radio" id="s6" name="scenario" value="Scenario_6"><label for="s6">M2 + GM-CSF</label>
+        <input type="radio" id="s7" name="scenario" value="Scenario_7"><label for="s7">BMM</label>
+        <input type="radio" id="s8" name="scenario" value="Scenario_8"><label for="s8">GMM</label>
+      </fieldset>
+
+      <div id="cy" role="img" aria-label="Interactive network diagram of the macrophage GM-CSF signaling model"></div>
+      <p class="small muted">BMM: bone-marrow-derived macrophages. GMM: GM-CSF-derived macrophages. Simulation traces show element activity over time for the selected scenario. Version 3 of the simplified model.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Adam A. Butchy</span>
+      <ul class="social">
+        <li><a href="https://github.com/aabutchy" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/adambutchy/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+        <li><a href="https://scholar.google.com/citations?user=iLmtbRYAAAAJ" aria-label="Google Scholar" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c3 3 9 3 12 0v-4.5"/><path d="M22 10v6"/></svg></a></li>
+        <li><a href="https://x.com/Abutchy" aria-label="X (Twitter)" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li>
+        <li><a href="https://www.instagram.com/abutchy/" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape-popper@1.0.4/cytoscape-popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tippy.js@4.3.5/umd/index.all.min.js"></script>
+  <script src="../js/macrophage-model.js"></script>
+</body>
+</html>

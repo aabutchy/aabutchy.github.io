@@ -3,12 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam A. Butchy</title>
-  <meta name="description" content="Adam Butchy is a cofounder and Chief Scientific Officer of HEARTio and holds a Ph.D. in Bioengineering from the University of Pittsburgh.">
-  <meta property="og:title" content="Adam A. Butchy">
-  <meta property="og:description" content="Cofounder & CSO of HEARTio. Ph.D. in Bioengineering, University of Pittsburgh.">
-  <meta property="og:image" content="https://adambutchy.me/img/headshot.jpg">
-  <meta property="og:url" content="https://adambutchy.me/">
+  <title>Projects — Adam A. Butchy</title>
+  <meta name="description" content="Interactive explainers and models by Adam Butchy, including a confusion matrix primer and a macrophage signaling network from his dissertation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,10 +22,10 @@
       <a class="brand" href="index.html">Adam A. Butchy</a>
       <nav aria-label="Main">
         <ul class="nav">
-          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="news.html">News</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
         </ul>
       </nav>
     </div>
@@ -37,42 +33,23 @@
 
   <main>
     <div class="wrap">
-      <section class="hero">
-        <div>
-          <p class="eyebrow">Cofounder &amp; Chief Scientific Officer, HEARTio</p>
-          <h1>Hi, I'm Adam Butchy.</h1>
-          <p class="lead">I build AI that reads a standard electrocardiogram and finds coronary artery disease earlier, faster, and at a fraction of the cost of today's tests.</p>
-          <p class="lead">I hold a Ph.D. in Bioengineering from the University of Pittsburgh, where I modeled how immune cells make decisions.</p>
-          <div class="btn-row">
-            <a class="btn primary" href="about.html">About me</a>
-            <a class="btn" href="news.html">News &amp; publications</a>
-            <a class="btn" href="https://www.heartio.ai/" rel="noopener">HEARTio ↗</a>
-          </div>
-        </div>
-        <img src="img/headshot.jpg" alt="Portrait of Adam Butchy" width="800" height="800">
-      </section>
+      <h1>Projects</h1>
+      <p class="section-lead">My port-fo-lio? Sorry, I don't speak Italian. These are things I have built to explain an idea or explore a model, some for work and some for fun. Only I know which is which.</p>
 
-      <section>
-        <h2>I'm a <em>huge</em> fan of three-item lists.</h2>
-        <p class="section-lead">So here are three things you can find on this site.</p>
-        <div class="cards">
-          <a class="card" href="about.html">
-            <span class="num">01</span>
-            <h3>HEARTio</h3>
-            <p>A digital diagnostic startup I cofounded in 2018. FDA Breakthrough Device Designation, two issued patents, and a 1,600-patient validation study.</p>
-          </a>
-          <a class="card" href="news.html">
-            <span class="num">02</span>
-            <h3>News &amp; publications</h3>
-            <p>Milestones, awards, journal articles, conference papers, and patents, from the first pitch competition to Forbes 30 Under 30.</p>
-          </a>
-          <a class="card" href="projects.html">
-            <span class="num">03</span>
-            <h3>Projects</h3>
-            <p>Interactive explainers and models, including the macrophage signaling network from my dissertation.</p>
-          </a>
-        </div>
-      </section>
+      <div class="cards">
+        <a class="card" href="projects/confusion-matrix.html">
+          <img src="img/ConfMatrix.png" alt="A two-by-two confusion matrix of patient status versus test result" width="550" height="592">
+          <h3>The confusion matrix</h3>
+          <p>A plain-language primer on sensitivity, specificity, and predictive value, written for anyone who has to decide whether to trust a medical test.</p>
+          <span class="meta">Explainer · Last updated 2026</span>
+        </a>
+        <a class="card" href="projects/macrophage-model.html">
+          <img src="img/macrophage-model.png" alt="A network diagram of genes, mRNA, and proteins in a macrophage signaling model" width="1400" height="653">
+          <h3>Macrophage GM-CSF signaling model</h3>
+          <p>An interactive network from my dissertation. Pick a stimulus scenario and hover any molecule to see its regulators and its simulated response.</p>
+          <span class="meta">Interactive model · Ph.D. research</span>
+        </a>
+      </div>
     </div>
   </main>
 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Confusion Matrix — Adam A. Butchy</title>
+  <meta name="description" content="A plain-language explanation of the confusion matrix, sensitivity, specificity, and predictive value for medical tests.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="../img/favicons/safari-pinned-tab.svg" color="#b42b3a">
+  <meta name="theme-color" content="#fbfaf8">
+  <script src="../js/load-mathjax.js" async></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Adam A. Butchy</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../news.html">News</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="small"><a href="../projects.html">← All projects</a></p>
+      <h1>The confusion matrix</h1>
+      <p class="section-lead">A handy little table that tells you how much to trust a medical test, and why "accurate" is never the whole story.</p>
+
+      <div class="two-col">
+        <div class="prose">
+          <h2>Introduction</h2>
+          <p>Imagine you are an engineer trying to develop a test that identifies patients who have a disease. Every patient is either healthy or sick, and your test returns either a negative result ("healthy") or a positive result ("sick"). Cross those two facts and you get four possible outcomes. Laying them out in a two-by-two grid gives you a <strong>confusion matrix</strong>.</p>
+          <p>The problem is that there are several different ways a test can be right, and just as many ways it can be wrong. A test that never misses a sick patient might also raise a lot of false alarms. A test that never bothers a healthy person might let sick patients slip through. The confusion matrix lets us articulate those strengths and weaknesses quickly, which is why doctors, engineers, and regulators all lean on it.</p>
+
+          <h2>Terminology</h2>
+          <ul>
+            <li><strong>Healthy</strong>: the patient does not have the disease.</li>
+            <li><strong>Sick</strong>: the patient does have the disease.</li>
+            <li><strong>Positive test</strong>: the test says the patient is sick.</li>
+            <li><strong>Negative test</strong>: the test says the patient is healthy.</li>
+            <li><strong>True positive \((TP)\)</strong>: a correct call that the patient is sick.</li>
+            <li><strong>True negative \((TN)\)</strong>: a correct call that the patient is healthy.</li>
+            <li><strong>False positive \((FP)\)</strong>: the test says sick, but the patient is healthy. A false alarm.</li>
+            <li><strong>False negative \((FN)\)</strong>: the test says healthy, but the patient is sick. A missed diagnosis.</li>
+          </ul>
+          <p>"True" and "false" describe whether the test got it right. "Positive" and "negative" describe what the test said. Keep those two axes separate and the rest follows.</p>
+        </div>
+        <figure class="figure">
+          <img src="../img/ConfMatrix.png" alt="A confusion matrix. Rows are patient status (healthy, sick); columns are test result (negative, positive). Cells read true negative, false positive, false negative, true positive." width="550" height="592">
+          <figcaption>The four outcomes of a diagnostic test. False positives are "false alarms"; false negatives are "missed diagnoses."</figcaption>
+        </figure>
+      </div>
+
+      <div class="prose">
+        <h2>A worked example</h2>
+        <p>Say there are 10 patients: 5 healthy and 5 sick. Our "test" is a single question, "Have you thrown up today?" Not a great test, but stick with me. Suppose 3 of the 5 sick patients have thrown up and none of the healthy patients have.</p>
+        <ul>
+          <li>True positives: 3 (sick, and the test caught them)</li>
+          <li>False negatives: 2 (sick, but the test said healthy)</li>
+          <li>True negatives: 5 (healthy, and the test agreed)</li>
+          <li>False positives: 0 (no healthy patient was flagged)</li>
+        </ul>
+        <p>This test is excellent at identifying healthy people (5 of 5) and mediocre at identifying sick people (3 of 5). In the language below, it is very <em>specific</em> but not very <em>sensitive</em>.</p>
+
+        <h2>The metrics</h2>
+        <p><strong>Sensitivity</strong>: of all the sick patients, what fraction did the test catch? A sensitive test rarely misses disease.</p>
+        $$Se = \frac{TP}{TP + FN}$$
+        <p><strong>Specificity</strong>: of all the healthy patients, what fraction did the test correctly clear? A specific test rarely raises false alarms.</p>
+        $$Sp = \frac{TN}{TN + FP}$$
+        <p><strong>Positive predictive value</strong>: if the test comes back positive, what is the chance the patient is actually sick? This is the number a patient really wants to know, and it depends on how common the disease is.</p>
+        $$PPV = \frac{TP}{TP + FP}$$
+        <p><strong>Negative predictive value</strong>: if the test comes back negative, what is the chance the patient is actually healthy?</p>
+        $$NPV = \frac{TN}{TN + FN}$$
+        <p><strong>Accuracy</strong>: what fraction of all calls were right? Beware: if a disease is rare, a test that says "healthy" to everyone can be extremely accurate and completely useless.</p>
+        $$Acc = \frac{TP + TN}{TP + TN + FP + FN}$$
+        <p>For the example above: sensitivity is 60%, specificity is 100%, PPV is 100%, NPV is 71%, and accuracy is 80%.</p>
+
+        <h2>Which matters more?</h2>
+        <p>In a perfect world every test would be right 100% of the time, and the only thing a clinician would need to know is which test to order. Unfortunately very few tests are perfect, so clinicians must weigh a test's accuracy against its cost and its risks, and we have to make trade-offs depending on what we are trying to detect.</p>
+        <p>Neither sensitivity nor specificity is more important in general. It depends on the situation. A screening test for a dangerous, treatable disease should be sensitive: missing a case is costly, and a false alarm just leads to a follow-up test. A confirmatory test before a risky surgery should be specific: you do not want to operate on someone who was never sick. Think about a pregnancy test. Is it more important to correctly identify someone who is pregnant, or to be able to tell someone definitively that they are not? Different people in different situations will answer that differently, and that is exactly the point.</p>
+
+        <h2>Further reading</h2>
+        <p>Wikipedia's <a href="https://en.wikipedia.org/wiki/Confusion_matrix" rel="noopener">confusion matrix</a> article covers the full zoo of derived metrics. This page is my attempt at a clearer, more focused introduction from the standpoint of a diagnostic test.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Adam A. Butchy</span>
+      <ul class="social">
+        <li><a href="https://github.com/aabutchy" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/adambutchy/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+        <li><a href="https://scholar.google.com/citations?user=iLmtbRYAAAAJ" aria-label="Google Scholar" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c3 3 9 3 12 0v-4.5"/><path d="M22 10v6"/></svg></a></li>
+        <li><a href="https://x.com/Abutchy" aria-label="X (Twitter)" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li>
+        <li><a href="https://www.instagram.com/abutchy/" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
