@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chest-Pain Triage Simulator — Adam A. Butchy</title>
+  <meta name="description" content="An interactive Sankey model showing how a diagnostic test's sensitivity, specificity, and disease prevalence decide who goes to the cath lab, who goes home, and how many of those calls are wrong.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../img/favicons/favicon-16x16.png">
+  <link rel="manifest" href="../img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="../img/favicons/safari-pinned-tab.svg" color="#b42b3a">
+  <meta name="theme-color" content="#fbfaf8">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Adam A. Butchy</a>
+      <nav aria-label="Main">
+        <ul class="nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../news.html">News</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="small"><a href="../projects.html">← All projects</a></p>
+      <h1>Chest-pain triage simulator</h1>
+      <p class="section-lead">A diagnostic test is only as useful as the decisions it drives. Move the sliders to see how a test's accuracy, and how common the disease is, change who ends up in the cath lab, who goes home, and how many of those calls are wrong.</p>
+
+      <div class="prose">
+        <p>When someone arrives at the emergency department with chest pain, the question is whether they have obstructive coronary artery disease (CAD). The definitive answer comes from a catheterization, which is invasive and expensive, so most patients first get a cheaper, non-invasive test. A positive result sends them on to the cath lab; a negative result sends them home. This model follows a cohort through that single decision. It is the same arithmetic as the <a href="confusion-matrix.html">confusion matrix</a>, drawn as a flow of patients instead of a table.</p>
+      </div>
+
+      <section class="sim">
+        <div class="sim-controls" aria-label="Model inputs">
+          <div class="slider">
+            <label for="inPrev">CAD prevalence <output id="outPrev">10%</output></label>
+            <input type="range" id="inPrev" min="1" max="99" value="10">
+            <span class="hint">Share of the cohort that truly has obstructive CAD.</span>
+          </div>
+          <div class="slider">
+            <label for="inSens">Test sensitivity <output id="outSens">60%</output></label>
+            <input type="range" id="inSens" min="1" max="99" value="60">
+            <span class="hint">Of patients with CAD, the share whose test comes back positive.</span>
+          </div>
+          <div class="slider">
+            <label for="inSpec">Test specificity <output id="outSpec">60%</output></label>
+            <input type="range" id="inSpec" min="1" max="99" value="60">
+            <span class="hint">Of patients without CAD, the share whose test comes back negative.</span>
+          </div>
+          <div class="slider">
+            <label for="inN">Cohort size</label>
+            <select id="inN">
+              <option value="100" selected>100 patients</option>
+              <option value="1000">1,000 patients</option>
+              <option value="10000">10,000 patients</option>
+            </select>
+            <span class="hint">Counts below are expected values, so they may not be whole numbers.</span>
+          </div>
+          <div class="presets">
+            <span class="hint">Try a scenario:</span>
+            <button type="button" class="chip" data-preset="10,60,60">Coin-flip test</button>
+            <button type="button" class="chip" data-preset="10,95,60">Sensitive, not specific</button>
+            <button type="button" class="chip" data-preset="10,60,95">Specific, not sensitive</button>
+            <button type="button" class="chip" data-preset="40,85,85">High-risk clinic</button>
+            <button type="button" class="chip" data-preset="5,85,85">Low-risk clinic</button>
+          </div>
+        </div>
+
+        <div class="sim-chart" id="sankey"></div>
+
+        <p class="sim-sentence" id="tSentence" aria-live="polite"></p>
+
+        <ul class="tiles" aria-label="Results">
+          <li><span class="label">Sent to cath lab</span><span class="value" id="tCath">0</span></li>
+          <li class="bad"><span class="label">…without obstructive CAD</span><span class="value" id="tFP">0</span><span class="sub">unnecessary catheterizations</span></li>
+          <li><span class="label">Discharged</span><span class="value" id="tHome">0</span></li>
+          <li class="bad"><span class="label">…with obstructive CAD</span><span class="value" id="tFN">0</span><span class="sub">missed disease</span></li>
+          <li><span class="label">Positive predictive value</span><span class="value" id="tPPV">0%</span><span class="sub">chance a positive test is right</span></li>
+          <li><span class="label">Negative predictive value</span><span class="value" id="tNPV">0%</span><span class="sub">chance a negative test is right</span></li>
+        </ul>
+      </section>
+
+      <div class="prose">
+        <h2>What to notice</h2>
+        <ul>
+          <li><strong>Prevalence dominates.</strong> Drag prevalence down to 5% and even a good test sends more healthy people to the cath lab than sick ones. The same test in a high-risk clinic looks far better. That is why positive predictive value, not sensitivity, is what a patient with a positive result should care about.</li>
+          <li><strong>The two errors have different prices.</strong> A false positive costs a catheterization the patient did not need. A false negative sends someone home with undiagnosed disease. Which one you tolerate depends on what happens next in the pathway.</li>
+          <li><strong>A single number hides the trade-off.</strong> "Accuracy" can stay flat while the mix of missed disease and unnecessary procedures swings wildly. Sensitivity and specificity, plotted against a real population, show what accuracy hides.</li>
+        </ul>
+
+        <h2>What this leaves out</h2>
+        <p>Real triage is a chain of decisions, not one. Patients with a normal first ECG may be observed for several hours with repeat tests, a positive stress test may lead to imaging before anyone considers catheterization, and each step has its own cost, wait time, and risk. This simulator collapses all of that into one test so the effect of accuracy is easy to see. Extending it to a multi-step pathway with costs attached is the natural next version.</p>
+
+        <h2>About this project</h2>
+        <p>I built the first version of this in late 2021 as a way to explain to non-clinicians why sensitivity and specificity are not interchangeable and why prevalence matters so much for a diagnostic test. The original used D3 v5 with a hand-patched Sankey layout; this version uses D3 v7 and d3-sankey, and the icons are from that original build.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Adam A. Butchy</span>
+      <ul class="social">
+        <li><a href="https://github.com/aabutchy" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/adambutchy/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+        <li><a href="https://scholar.google.com/citations?user=iLmtbRYAAAAJ" aria-label="Google Scholar" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c3 3 9 3 12 0v-4.5"/><path d="M22 10v6"/></svg></a></li>
+        <li><a href="https://x.com/Abutchy" aria-label="X (Twitter)" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li>
+        <li><a href="https://www.instagram.com/abutchy/" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+  <script src="../js/triage-simulator.js"></script>
+</body>
+</html>

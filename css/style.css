@@ -619,3 +619,202 @@ a.card:hover {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Triage simulator */
+.sim {
+  margin: 1.5rem 0 2.5rem;
+}
+
+.sim-controls {
+  display: grid;
+  gap: 1rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.slider label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.slider output {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+  margin: 0.25rem 0;
+}
+
+.slider select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.slider .hint,
+.presets .hint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.presets {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.presets .hint {
+  margin: 0 0.25rem 0 0;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sim-chart {
+  margin-top: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sim-chart svg {
+  width: 100%;
+  min-width: 600px;
+  height: auto;
+  display: block;
+  font-family: var(--font);
+}
+
+.sim-chart .link {
+  stroke-opacity: 0.45;
+  transition: stroke-opacity 0.15s;
+}
+
+.sim-chart .link:hover {
+  stroke-opacity: 0.8;
+}
+
+.sim-chart .link.flow {
+  stroke: #b9b2a8;
+}
+
+.sim-chart .link.good {
+  stroke: #2e8b57;
+}
+
+.sim-chart .link.bad {
+  stroke: #c8353f;
+}
+
+.sim-chart .node .halo {
+  fill: #fff;
+  stroke: #1c1b1a;
+  stroke-width: 2;
+}
+
+.sim-chart .node .label {
+  font-size: 13px;
+  font-weight: 600;
+  fill: #1c1b1a;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.sim-chart .node .count {
+  font-size: 12px;
+  fill: #5f5b56;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.sim-sentence {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.tiles {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 720px) {
+  .tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tiles li {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tiles .label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-muted);
+}
+
+.tiles .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tiles .bad .value {
+  color: var(--accent);
+}
+
+.tiles .sub {
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+}

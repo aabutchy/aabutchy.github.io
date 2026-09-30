@@ -13,17 +13,20 @@ about.html                     Bio, education, recognition and press
 news.html                      HEARTio milestone timeline + publications and patents
 projects.html                  Project index
 projects/confusion-matrix.html Explainer on sensitivity, specificity, PPV, NPV (MathJax)
+projects/triage-simulator.html Interactive Sankey of a chest-pain cohort through one diagnostic test (d3-sankey)
 projects/macrophage-model.html Interactive Cytoscape.js network from the Ph.D. work
 404.html                       GitHub Pages not-found page
 css/style.css                  Single shared stylesheet (light + dark mode)
 js/macrophage-model.js         Viewer logic for the macrophage model
+js/triage-simulator.js         Model + rendering for the triage simulator
 js/load-mathjax.js             MathJax 3 loader
 data/macrophage-model/         model.json + per-scenario simulation trace PNGs
-img/                           Headshot, figures, favicons, img/news/ timeline photos
+img/                           Headshot, figures, favicons, img/news/ timeline photos, img/triage/ icons
 CNAME                          Custom domain for GitHub Pages
 ```
 
-`sources/` is git-ignored and holds original photos, PDFs, and drafts.
+`sources/` and `ZZZ_to_add/` are git-ignored: original photos, PDFs, drafts, and
+unpublished work-in-progress (including anything containing patient data).
 
 ## Working locally
 
@@ -48,6 +51,7 @@ Edit `news.html` directly. Timeline entries are `<li>` items in the
 - Icons: hand-drawn inline SVG in the footer, based on the
   [Feather](https://feathericons.com/) style.
 - Favicons generated with [RealFaviconGenerator](https://realfavicongenerator.net/).
+- Sankey rendering: [D3](https://d3js.org/) and [d3-sankey](https://github.com/d3/d3-sankey).
 - Network rendering: [Cytoscape.js](https://js.cytoscape.org/),
   [cytoscape-popper](https://github.com/cytoscape/cytoscape.js-popper), and
   [Tippy.js](https://atomiks.github.io/tippyjs/).
