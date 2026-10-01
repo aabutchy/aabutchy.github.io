@@ -9,7 +9,7 @@ Plain HTML and CSS, no build step. Push to `main` and GitHub Pages deploys it.
 
 ```
 index.html                     Home
-about.html                     Bio, education, recognition and press
+about.html                     Bio and education
 news.html                      HEARTio milestone timeline + publications and patents
 projects.html                  Project index
 projects/diagnostic-accuracy.html Confusion-matrix explainer (MathJax) + chest-pain triage Sankey simulator (d3-sankey)
