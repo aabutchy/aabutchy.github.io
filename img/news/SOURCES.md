@@ -8,12 +8,11 @@
 | crt-2026.jpg | Mar 2026 JACC: CI abstract | Company Drive, "CRT 26 Abstracts.png" | HEARTio's own |
 | jacc-advances-2026.jpg | Jan 2026 JACC: Advances | PMC12874818, central illustration (gr5) | CC BY-NC-ND 4.0, reproduced unmodified with attribution |
 | heartx-2025.jpg | Oct 2025 HeartX | Company Drive, "Adam_heartX.jpeg" | HEARTio's own |
-| tct-2025.jpg | Oct 2025 TCT-898 | Company Drive, "TCT2025_Abstract_Social_Landscape.jpg" (CRF presenter template filled by HEARTio) | HEARTio's own / CRF promo template |
 | lsf-2025.jpg | Sep 2025 Life Sciences Future | HEARTio LinkedIn post photo | HEARTio's own |
 | pittsburgh-tomorrow-2025.jpg | Oct 2025 Pittsburgh Tomorrow interview | YouTube thumbnail of the episode | Pittsburgh Tomorrow; used with on-page credit at Adam's decision |
 | swanson-2019-team.jpg | Nov 2019 Swanson School feature | Pitt Swanson School of Engineering article photo (Rice BPC story) | University of Pittsburgh; used with on-page credit at Adam's decision |
 | tcbb-2025-fig1.png | Jan 2025 TCBB paper | arXiv 2301.11397, Fig. 1 | Author's own |
-| dissertation-2024-fig1.png | Apr 2024 Ph.D. | Dissertation PDF (d-scholarship 44135), Fig. 1 | Author's own |
+| dissertation-2024-fig14.png | Apr 2024 Ph.D. | Dissertation (d-scholarship 44135), Fig. 14, supplied by Adam | Author's own |
 | snap-car-2023-model.png | May 2023 Nature Communications | PMC10169838, Fig. 8 | CC BY 4.0, attributed in caption |
 | ahn-2021-press-release.png | Jul 2021 AHN partnership | HEARTio press release PDF (Wayback), header | HEARTio's own |
 | fda-breakthrough-2020.jpg | Nov 2020 FDA designation | HEARTio press release PDF (Wayback), header | HEARTio's own |

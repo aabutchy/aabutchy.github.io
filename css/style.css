@@ -337,6 +337,20 @@ a.card:hover {
   max-width: 40rem;
 }
 
+/* Justified running text. Hyphenation keeps the word gaps even in narrow
+   columns; it relies on the lang="en" every page declares. */
+.prose p,
+.prose li,
+.section-lead,
+.hero .lead,
+.timeline p,
+.card p,
+.sim-sentence {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .facts {
   display: grid;
   gap: 0.75rem 1.5rem;
