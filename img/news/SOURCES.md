@@ -4,13 +4,14 @@
 |---|---|---|---|
 | innovation-works-ahn-2026.jpg | Jul 2026 AlphaLab Health | HEARTio LinkedIn announcement graphic (company Drive) | HEARTio's own |
 | lsf-sw-2026.jpg | Apr 2026 Life Sciences Future SW | HEARTio LinkedIn post photo | HEARTio's own |
-| bessel-2026.jpg | Mar 2026 seed round | Company Drive, "Adam-Utkars-Chris HEARTio Bessel.jpg" (Jan 2026) | HEARTio's own |
 | patent-3-fig2.png | Mar 2026 third patent | USPTO PDF of US 12,573,505, Fig. 2 | Public domain (US patent drawing) |
 | crt-2026.jpg | Mar 2026 JACC: CI abstract | Company Drive, "CRT 26 Abstracts.png" | HEARTio's own |
 | jacc-advances-2026.jpg | Jan 2026 JACC: Advances | PMC12874818, central illustration (gr5) | CC BY-NC-ND 4.0, reproduced unmodified with attribution |
 | heartx-2025.jpg | Oct 2025 HeartX | Company Drive, "Adam_heartX.jpeg" | HEARTio's own |
 | tct-2025.jpg | Oct 2025 TCT-898 | Company Drive, "TCT2025_Abstract_Social_Landscape.jpg" (CRF presenter template filled by HEARTio) | HEARTio's own / CRF promo template |
 | lsf-2025.jpg | Sep 2025 Life Sciences Future | HEARTio LinkedIn post photo | HEARTio's own |
+| pittsburgh-tomorrow-2025.jpg | Oct 2025 Pittsburgh Tomorrow interview | YouTube thumbnail of the episode | Pittsburgh Tomorrow; used with on-page credit at Adam's decision |
+| swanson-2019-team.jpg | Nov 2019 Swanson School feature | Pitt Swanson School of Engineering article photo (Rice BPC story) | University of Pittsburgh; used with on-page credit at Adam's decision |
 | tcbb-2025-fig1.png | Jan 2025 TCBB paper | arXiv 2301.11397, Fig. 1 | Author's own |
 | dissertation-2024-fig1.png | Apr 2024 Ph.D. | Dissertation PDF (d-scholarship 44135), Fig. 1 | Author's own |
 | snap-car-2023-model.png | May 2023 Nature Communications | PMC10169838, Fig. 8 | CC BY 4.0, attributed in caption |
@@ -25,4 +26,4 @@
 | forbes-30-under-30.jpg, tulane.jpg, baylor.jpg, student-innovators.jpg, pittsburgh-30-under-30.jpg, cjc.jpg, mdpi.jpg, liftoff-pgh.webp, patent.jpg, rice.jpg, randall.jpg, conference.jpg | earlier entries | Blog drafts folder (Sept 2024) | Adam's own photos / own papers |
 
 Candidates that were found but NOT used because they belong to someone else (ask before using):
-Pittsburgh Tomorrow video thumbnail; Pitt Swanson School team photos (2019 feature and Rice BPC story); Pitt Innovation Institute and Technical.ly article photos; Oracle blog images; HealthTech Arkansas / MedAxiom HeartX graphics; LiftOff PGH graphics; ISMICS banner.
+Pitt Innovation Institute and Technical.ly article photos; Oracle blog images; HealthTech Arkansas / MedAxiom HeartX graphics; LiftOff PGH graphics; ISMICS banner.
