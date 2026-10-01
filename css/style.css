@@ -465,6 +465,13 @@ a.card:hover {
 .timeline .photo img {
   border-radius: 10px;
   border: 1px solid var(--line);
+  background: #fff;
+}
+
+.timeline .photo figcaption {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  margin-top: 0.4rem;
 }
 
 /* Publications */
