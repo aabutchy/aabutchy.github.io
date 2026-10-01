@@ -728,34 +728,79 @@ a.card:hover {
 }
 
 .sim-chart .link {
-  stroke-opacity: 0.45;
+  stroke-opacity: 0.6;
   transition: stroke-opacity 0.15s;
 }
 
 .sim-chart .link:hover {
-  stroke-opacity: 0.8;
+  stroke-opacity: 0.9;
 }
 
-.sim-chart .link.flow {
-  stroke: #b9b2a8;
+/* Red = obstructive CAD (sick), green = no obstructive CAD (healthy). The
+   chart sits on a fixed white panel, so these do not change in dark mode. */
+.sim-chart {
+  --sick: #c8353f;
+  --sick-soft: #fbe3e5;
+  --well: #2e8b57;
+  --well-soft: #e2f3e8;
 }
 
-.sim-chart .link.good {
-  stroke: #2e8b57;
+.sim-chart .link.sick {
+  stroke: var(--sick);
 }
 
-.sim-chart .link.bad {
-  stroke: #c8353f;
+.sim-chart .link.well {
+  stroke: var(--well);
 }
 
 .sim-chart .node .halo {
   fill: #fff;
   stroke: #1c1b1a;
-  stroke-width: 2;
+  stroke-width: 2.5;
+}
+
+.sim-chart .node.sick .halo {
+  fill: var(--sick-soft);
+  stroke: var(--sick);
+  stroke-width: 3.5;
+}
+
+.sim-chart .node.well .halo {
+  fill: var(--well-soft);
+  stroke: var(--well);
+  stroke-width: 3.5;
+}
+
+.sim-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin: 0.25rem 0.5rem 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  color: #5f5b56;
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.4em;
+  border-radius: 3px;
+  vertical-align: -0.05em;
+}
+
+.swatch.sick {
+  background: #c8353f;
+}
+
+.swatch.well {
+  background: #2e8b57;
 }
 
 .sim-chart .node .label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   fill: #1c1b1a;
   paint-order: stroke;
@@ -817,8 +862,16 @@ a.card:hover {
   font-variant-numeric: tabular-nums;
 }
 
-.tiles .bad .value {
-  color: var(--accent);
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tiles .swatch.sick,
+  :root:not([data-theme="light"]) .prose .swatch.sick {
+    background: #e5656e;
+  }
+
+  :root:not([data-theme="light"]) .tiles .swatch.well,
+  :root:not([data-theme="light"]) .prose .swatch.well {
+    background: #4fb07a;
+  }
 }
 
 .tiles .sub {

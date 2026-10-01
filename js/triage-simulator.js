@@ -13,8 +13,8 @@
     { id: "test", name: "Diagnostic test", icon: "StrECG.png" },
     { id: "cath", name: "Cath lab", icon: "Cath.png" },
     { id: "home", name: "Discharged", icon: "discharge.png" },
-    { id: "cad", name: "Obstructive CAD", icon: "cadYes.png" },
-    { id: "nocad", name: "No obstructive CAD", icon: "cadNo.png" },
+    { id: "cad", name: "Obstructive CAD", icon: "cadYes.png", status: "sick" },
+    { id: "nocad", name: "No obstructive CAD", icon: "cadNo.png", status: "well" },
   ];
 
   const inputs = {
@@ -60,12 +60,16 @@
   }
 
   // ---- Sankey -------------------------------------------------------------
+  // Every ribbon is split by what is actually true about the patient: red for
+  // obstructive CAD (sick), green for no obstructive CAD (healthy). A perfect
+  // test would send all of the red up to the cath lab and all of the green
+  // home, so any green reaching the cath lab or red going home is an error.
   const W = 960;
-  const H = 430;
-  // The flow band is deliberately shorter than the drawing so ribbons stay
-  // slim and there is room for labels under the bottom row of icons.
-  const M = { top: 70, right: 150, bottom: 130, left: 50 };
-  const R = 34; // node icon radius
+  const H = 440;
+  const R = 50; // node icon radius
+  const FLOW = 100; // thickness, in px, of a ribbon carrying the whole cohort
+  const PAD = 150; // vertical gap between stacked nodes; leaves room for icon + label
+  const M = { top: R + 22, right: 90, bottom: 2 * R + 18, left: 70 };
 
   const svg = d3
     .select("#sankey")
@@ -79,41 +83,42 @@
   const gNodes = svg.append("g").attr("class", "nodes");
   const defs = svg.append("defs");
 
+  // Fix the flow band to FLOW + PAD so ribbon thickness does not depend on
+  // how many nodes share a column.
   const sankey = d3
     .sankey()
     .nodeId((d) => d.id)
     .nodeWidth(10)
-    .nodePadding(90)
+    .nodePadding(PAD)
     .nodeAlign(d3.sankeyJustify)
     .nodeSort(null)
     .linkSort(null)
     .extent([
       [M.left, M.top],
-      [W - M.right, H - M.bottom],
+      [W - M.right, M.top + FLOW + PAD],
     ]);
 
-  const LINK_KIND = {
-    "chest-test": { kind: "flow", label: () => "Everyone is tested" },
-    "test-cath": { kind: "flow", label: (r) => `Positive test: ${fmt(r.cath)} sent to the cath lab` },
-    "test-home": { kind: "flow", label: (r) => `Negative test: ${fmt(r.home)} discharged` },
-    "cath-cad": { kind: "good", label: (r) => `True positives: ${fmt(r.TP)} had disease and were caught` },
-    "cath-nocad": { kind: "bad", label: (r) => `False positives: ${fmt(r.FP)} had an unnecessary catheterization` },
-    "home-nocad": { kind: "good", label: (r) => `True negatives: ${fmt(r.TN)} correctly sent home` },
-    "home-cad": { kind: "bad", label: (r) => `False negatives: ${fmt(r.FN)} sent home with disease` },
-  };
+  const LINKS = [
+    { key: "chest-test-sick", source: "chest", target: "test", status: "sick", value: (r) => r.sick, label: (r) => `${fmt(r.sick)} patients with obstructive CAD are tested` },
+    { key: "chest-test-well", source: "chest", target: "test", status: "well", value: (r) => r.well, label: (r) => `${fmt(r.well)} patients without obstructive CAD are tested` },
+    { key: "test-cath-sick", source: "test", target: "cath", status: "sick", value: (r) => r.TP, label: (r) => `Positive test, has CAD: ${fmt(r.TP)} sent to the cath lab (true positives)` },
+    { key: "test-cath-well", source: "test", target: "cath", status: "well", value: (r) => r.FP, label: (r) => `Positive test, no CAD: ${fmt(r.FP)} sent to the cath lab (false positives)` },
+    { key: "test-home-sick", source: "test", target: "home", status: "sick", value: (r) => r.FN, label: (r) => `Negative test, has CAD: ${fmt(r.FN)} discharged (false negatives)` },
+    { key: "test-home-well", source: "test", target: "home", status: "well", value: (r) => r.TN, label: (r) => `Negative test, no CAD: ${fmt(r.TN)} discharged (true negatives)` },
+    { key: "cath-cad", source: "cath", target: "cad", status: "sick", value: (r) => r.TP, label: (r) => `True positives: ${fmt(r.TP)} had disease and were caught` },
+    { key: "cath-nocad", source: "cath", target: "nocad", status: "well", value: (r) => r.FP, label: (r) => `False positives: ${fmt(r.FP)} had an unnecessary catheterization` },
+    { key: "home-cad", source: "home", target: "cad", status: "sick", value: (r) => r.FN, label: (r) => `False negatives: ${fmt(r.FN)} sent home with disease` },
+    { key: "home-nocad", source: "home", target: "nocad", status: "well", value: (r) => r.TN, label: (r) => `True negatives: ${fmt(r.TN)} correctly sent home` },
+  ];
+  const LINK_BY_KEY = Object.fromEntries(LINKS.map((l) => [l.key, l]));
 
   const EPS = 1e-6;
 
   function buildGraph(r) {
-    const links = [
-      { source: "chest", target: "test", value: r.cath + r.home },
-      { source: "test", target: "cath", value: r.cath },
-      { source: "test", target: "home", value: r.home },
-      { source: "cath", target: "cad", value: r.TP },
-      { source: "cath", target: "nocad", value: r.FP },
-      { source: "home", target: "cad", value: r.FN },
-      { source: "home", target: "nocad", value: r.TN },
-    ].map((l) => ({ ...l, real: l.value, value: Math.max(l.value, EPS), key: l.source + "-" + l.target }));
+    const links = LINKS.map((l) => {
+      const real = l.value(r);
+      return { key: l.key, source: l.source, target: l.target, real, value: Math.max(real, EPS) };
+    });
     return { nodes: NODES.map((d) => ({ ...d })), links };
   }
 
@@ -126,20 +131,23 @@
     link
       .enter()
       .append("path")
-      .attr("class", (d) => "link " + LINK_KIND[d.key].kind)
+      .attr("class", (d) => "link " + LINK_BY_KEY[d.key].status)
       .attr("d", d3.sankeyLinkHorizontal())
       .attr("stroke-width", (d) => Math.max(0.5, d.width))
       .each(function () {
         d3.select(this).append("title");
       })
       .merge(link)
-      .call((sel) => sel.select("title").text((d) => LINK_KIND[d.key].label(r)))
+      .call((sel) => sel.select("title").text((d) => LINK_BY_KEY[d.key].label(r)))
       .transition(t())
       .attr("d", d3.sankeyLinkHorizontal())
       .attr("stroke-width", (d) => (d.real <= 0 ? 0 : Math.max(0.75, d.width)));
 
     const node = gNodes.selectAll("g.node").data(graph.nodes, (d) => d.id);
-    const enter = node.enter().append("g").attr("class", "node");
+    const enter = node
+      .enter()
+      .append("g")
+      .attr("class", (d) => "node" + (d.status ? " " + d.status : ""));
 
     enter.each(function (d) {
       defs
@@ -152,18 +160,18 @@
     enter
       .append("image")
       .attr("href", (d) => ICON + d.icon)
-      .attr("x", -(R - 8))
-      .attr("y", -(R - 8))
-      .attr("width", 2 * (R - 8))
-      .attr("height", 2 * (R - 8))
+      .attr("x", -(R - 10))
+      .attr("y", -(R - 10))
+      .attr("width", 2 * (R - 10))
+      .attr("height", 2 * (R - 10))
       .attr("clip-path", (d) => `url(#clip-${d.id})`);
     enter
       .append("text")
       .attr("class", "label")
       .attr("text-anchor", "middle")
-      .attr("y", R + 18)
+      .attr("y", R + 20)
       .text((d) => d.name);
-    enter.append("text").attr("class", "count").attr("text-anchor", "middle").attr("y", R + 36);
+    enter.append("text").attr("class", "count").attr("text-anchor", "middle").attr("y", R + 38);
     enter.append("title");
 
     const all = enter.merge(node);

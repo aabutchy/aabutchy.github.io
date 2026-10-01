@@ -36,7 +36,7 @@
     <div class="wrap">
       <p class="small"><a href="../projects.html">← All projects</a></p>
       <h1>Diagnostic accuracy: from the confusion matrix to the cath lab</h1>
-      <p class="section-lead">How much should you trust a medical test? Part one explains the four ways a test can be right or wrong and the numbers built from them. Part two lets you push a cohort of chest-pain patients through a test and watch those numbers turn into unnecessary procedures and missed disease.</p>
+      <p class="section-lead">How much should you trust a medical test? Part one builds the vocabulary: the four ways a test can be right or wrong, and the numbers built from them. Part two puts that vocabulary to work, pushing a cohort of chest-pain patients through a test so you can watch those numbers turn into unnecessary procedures and missed disease.</p>
       <p class="small"><a href="#part-1">Part 1: The confusion matrix</a> · <a href="#part-2">Part 2: The chest-pain triage simulator</a></p>
 
       <h2 id="part-1">Part 1: The confusion matrix</h2>
@@ -91,13 +91,26 @@
 
         <h3>Which matters more?</h3>
         <p>In a perfect world every test would be right 100% of the time, and the only thing a clinician would need to know is which test to order. Unfortunately very few tests are perfect, so clinicians must weigh a test's accuracy against its cost and its risks, and we have to make trade-offs depending on what we are trying to detect.</p>
-        <p>Neither sensitivity nor specificity is more important in general. It depends on the situation. A screening test for a dangerous, treatable disease should be sensitive: missing a case is costly, and a false alarm just leads to a follow-up test. A confirmatory test before a risky surgery should be specific: you do not want to operate on someone who was never sick. Think about a pregnancy test. Is it more important to correctly identify someone who is pregnant, or to be able to tell someone definitively that they are not? Different people in different situations will answer that differently, and that is exactly the point. Part two makes that trade-off concrete.</p>
+        <p>Neither sensitivity nor specificity is more important in general. It depends on the situation. A screening test for a dangerous, treatable disease should be sensitive: missing a case is costly, and a false alarm just leads to a follow-up test. A confirmatory test before a risky surgery should be specific: you do not want to operate on someone who was never sick. Think about a pregnancy test. Is it more important to correctly identify someone who is pregnant, or to be able to tell someone definitively that they are not? Different people in different situations will answer that differently, and that is exactly the point.</p>
+
+        <h3>The number the matrix leaves out</h3>
+        <p>Look back at the worked example and notice a choice we made without saying so: half of the patients were sick. That split is the disease's <strong>prevalence</strong>, and it is not a property of the test at all. It is a property of the room you are testing in.</p>
+        <p>Sensitivity and specificity ignore prevalence. Each is calculated within a single row of the matrix, among only the sick or only the healthy, so they describe the test no matter who walks in. Predictive values and accuracy are calculated across both rows, so they move whenever the mix of patients changes. Ask the same vomiting question in a room of 100 patients where only 10 are sick, and NPV climbs from 71% to 96% and accuracy from 80% to 96%. The test did not get any better; the room got easier.</p>
+        <p>A grid of four numbers also hides what happens next. In a hospital, each cell of the matrix is a group of people with a different fate: some get the treatment they need, some get a procedure they did not, and some go home with disease nobody found. Part two follows those people.</p>
       </div>
 
       <h2 id="part-2">Part 2: The chest-pain triage simulator</h2>
 
       <div class="prose">
-        <p>When someone arrives at the emergency department with chest pain, the question is whether they have obstructive coronary artery disease (CAD). The definitive answer comes from a catheterization, which is invasive and expensive, so most patients first get a cheaper, non-invasive test. A positive result sends them on to the cath lab; a negative result sends them home. This model follows a cohort through that single decision. It is exactly the arithmetic from part one, drawn as a flow of patients instead of a table. Move the sliders to see how a test's accuracy, and how common the disease is, change who ends up in the cath lab, who goes home, and how many of those calls are wrong.</p>
+        <p>When someone arrives at the emergency department with chest pain, the question is whether they have obstructive coronary artery disease (CAD). The definitive answer comes from a cardiac catheterization, which is invasive and expensive, so most patients first get a cheaper, non-invasive test. A positive result sends them on to the cath lab; a negative result sends them home.</p>
+        <p>The simulator below is the confusion matrix from part one, drawn as a flow of patients instead of a table. Every ribbon is colored by the truth about the patients in it: <span class="swatch sick"></span>red for patients who have obstructive CAD and <span class="swatch well"></span>green for patients who do not. The test cannot see the colors. All it can do is sort patients toward the cath lab or toward home, and the four places the ribbons end up are the four cells of the matrix:</p>
+        <ul>
+          <li><strong>Red into the cath lab</strong> are true positives: disease found, and a catheterization worth doing.</li>
+          <li><strong>Green into the cath lab</strong> are false positives: healthy patients sent for an invasive procedure they did not need.</li>
+          <li><strong>Green sent home</strong> are true negatives: patients correctly reassured.</li>
+          <li><strong>Red sent home</strong> are false negatives: disease that was missed.</li>
+        </ul>
+        <p>The three sliders are the three numbers from part one. <strong>Prevalence</strong> sets how much of the starting ribbon is red, <strong>sensitivity</strong> sets how much of the red the test sends to the cath lab, and <strong>specificity</strong> sets how much of the green it sends home. Start with the <em>Part one's example</em> scenario, which rebuilds the vomiting question with 100 patients, then drag prevalence down and watch the predictive values move while sensitivity and specificity stay put.</p>
       </div>
 
       <section class="sim">
@@ -109,12 +122,12 @@
           </div>
           <div class="slider">
             <label for="inSens">Test sensitivity <output id="outSens">60%</output></label>
-            <input type="range" id="inSens" min="1" max="99" value="60">
+            <input type="range" id="inSens" min="1" max="100" value="60">
             <span class="hint">Of patients with CAD, the share whose test comes back positive.</span>
           </div>
           <div class="slider">
             <label for="inSpec">Test specificity <output id="outSpec">60%</output></label>
-            <input type="range" id="inSpec" min="1" max="99" value="60">
+            <input type="range" id="inSpec" min="1" max="100" value="60">
             <span class="hint">Of patients without CAD, the share whose test comes back negative.</span>
           </div>
           <div class="slider">
@@ -128,6 +141,7 @@
           </div>
           <div class="presets">
             <span class="hint">Try a scenario:</span>
+            <button type="button" class="chip" data-preset="50,60,100">Part one's example</button>
             <button type="button" class="chip" data-preset="10,60,60">Coin-flip test</button>
             <button type="button" class="chip" data-preset="10,95,60">Sensitive, not specific</button>
             <button type="button" class="chip" data-preset="10,60,95">Specific, not sensitive</button>
@@ -136,15 +150,20 @@
           </div>
         </div>
 
-        <div class="sim-chart" id="sankey"></div>
+        <div class="sim-chart" id="sankey">
+          <ul class="sim-legend" aria-label="Legend">
+            <li><span class="swatch sick"></span>Has obstructive CAD (sick)</li>
+            <li><span class="swatch well"></span>No obstructive CAD (healthy)</li>
+          </ul>
+        </div>
 
         <p class="sim-sentence" id="tSentence" aria-live="polite"></p>
 
         <ul class="tiles" aria-label="Results">
           <li><span class="label">Sent to cath lab</span><span class="value" id="tCath">0</span></li>
-          <li class="bad"><span class="label">…without obstructive CAD</span><span class="value" id="tFP">0</span><span class="sub">unnecessary catheterizations (false positives)</span></li>
+          <li><span class="label"><span class="swatch well"></span>…without obstructive CAD</span><span class="value" id="tFP">0</span><span class="sub">unnecessary catheterizations (false positives)</span></li>
           <li><span class="label">Discharged</span><span class="value" id="tHome">0</span></li>
-          <li class="bad"><span class="label">…with obstructive CAD</span><span class="value" id="tFN">0</span><span class="sub">missed disease (false negatives)</span></li>
+          <li><span class="label"><span class="swatch sick"></span>…with obstructive CAD</span><span class="value" id="tFN">0</span><span class="sub">missed disease (false negatives)</span></li>
           <li><span class="label">Positive predictive value</span><span class="value" id="tPPV">0%</span><span class="sub">chance a positive test is right</span></li>
           <li><span class="label">Negative predictive value</span><span class="value" id="tNPV">0%</span><span class="sub">chance a negative test is right</span></li>
         </ul>
@@ -153,7 +172,7 @@
       <div class="prose">
         <h3>What to notice</h3>
         <ul>
-          <li><strong>Prevalence dominates.</strong> Drag prevalence down to 5% and even a good test sends more healthy people to the cath lab than sick ones. The same test in a high-risk clinic looks far better. That is why positive predictive value, not sensitivity, is what a patient with a positive result should care about.</li>
+          <li><strong>Prevalence dominates.</strong> Pick the low-risk clinic: a test that is 85% sensitive and 85% specific sends more green than red into the cath lab. The same test in the high-risk clinic looks far better. That is why positive predictive value, not sensitivity, is what a patient with a positive result should care about.</li>
           <li><strong>The two errors have different prices.</strong> A false positive costs a catheterization the patient did not need. A false negative sends someone home with undiagnosed disease. Which one you tolerate depends on what happens next in the pathway.</li>
           <li><strong>A single number hides the trade-off.</strong> "Accuracy" can stay flat while the mix of missed disease and unnecessary procedures swings wildly. Sensitivity and specificity, plotted against a real population, show what accuracy hides.</li>
         </ul>
@@ -174,7 +193,7 @@
         <li><a href="https://github.com/aabutchy" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a></li>
         <li><a href="https://www.linkedin.com/in/adambutchy/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
         <li><a href="https://scholar.google.com/citations?user=iLmtbRYAAAAJ" aria-label="Google Scholar" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c3 3 9 3 12 0v-4.5"/><path d="M22 10v6"/></svg></a></li>
-        <li><a href="https://x.com/Abutchy" aria-label="X (Twitter)" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li>
+        <!-- X (Twitter) hidden for now; uncomment to restore: <li><a href="https://x.com/Abutchy" aria-label="X (Twitter)" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a></li> -->
         <li><a href="https://www.instagram.com/abutchy/" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
       </ul>
     </div>
