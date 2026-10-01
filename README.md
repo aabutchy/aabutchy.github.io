@@ -12,8 +12,8 @@ index.html                     Home
 about.html                     Bio, education, recognition and press
 news.html                      HEARTio milestone timeline + publications and patents
 projects.html                  Project index
-projects/confusion-matrix.html Explainer on sensitivity, specificity, PPV, NPV (MathJax)
-projects/triage-simulator.html Interactive Sankey of a chest-pain cohort through one diagnostic test (d3-sankey)
+projects/diagnostic-accuracy.html Confusion-matrix explainer (MathJax) + chest-pain triage Sankey simulator (d3-sankey)
+projects/confusion-matrix.html Redirect stub for the old explainer URL
 projects/macrophage-model.html Interactive Cytoscape.js network from the Ph.D. work
 404.html                       GitHub Pages not-found page
 css/style.css                  Single shared stylesheet (light + dark mode)
